@@ -12,7 +12,6 @@ Typescript: Última versión incluida en Angular 21
 RxJS: Incluido en Angular
 HTML5 / CSS3
 Angular Standalone Components
-ngx-extended-pdf-viewer (opcional, si deseas añadirlo)
 
 Backend
 NodeJS: 22.18.0
@@ -20,3 +19,4 @@ ExpressJS
 Axios
 CORS
 Servidor liviano actuando como proxy hacia EFACT para evitar CORS
+
