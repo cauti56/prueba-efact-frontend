@@ -21,3 +21,4 @@ Este proyecto es la solución para la prueba técnica de EFACT, donde se impleme
 · Servidor liviano actuando como proxy hacia EFACT para evitar CORS
 
 
+
