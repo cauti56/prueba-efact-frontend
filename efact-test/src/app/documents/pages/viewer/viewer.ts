@@ -19,6 +19,10 @@ export class ViewerComponent {
   ticket: string = '';
   pdfUrl: string | null = null;
 
+  // Agregar estas propiedades para que el test funcione
+  xmlUrl: string | null = null;
+  cdrUrl: string | null = null;
+
   loadFiles() {
     this.documentsService.getPDF(this.ticket).subscribe(blob =>
       this.pdfUrl = URL.createObjectURL(blob)
@@ -27,9 +31,11 @@ export class ViewerComponent {
 
   clearFiles() {
     this.pdfUrl = null;
+    this.xmlUrl = null;
+    this.cdrUrl = null;
   }
 
-  /* 🔵 DESCARGAS */
+  /* DESCARGAS */
   downloadPDF() {
     this.documentsService.getPDF(this.ticket).subscribe(blob => {
       const url = URL.createObjectURL(blob);
@@ -44,6 +50,7 @@ export class ViewerComponent {
   downloadXML() {
     this.documentsService.getXML(this.ticket).subscribe(blob => {
       const url = URL.createObjectURL(blob);
+      this.xmlUrl = url; // Guardar para test o preview
       const a = document.createElement('a');
       a.href = url;
       a.download = `${this.ticket}.xml`;
@@ -55,6 +62,7 @@ export class ViewerComponent {
   downloadCDR() {
     this.documentsService.getCDR(this.ticket).subscribe(blob => {
       const url = URL.createObjectURL(blob);
+      this.cdrUrl = url; // Guardar para test o preview
       const a = document.createElement('a');
       a.href = url;
       a.download = `${this.ticket}.zip`;
