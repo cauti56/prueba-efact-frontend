@@ -1,0 +1,32 @@
+<div class="viewer-wrapper">
+
+  <!-- 🔵 MENÚ SUPERIOR MINIMALISTA -->
+  <div class="top-menu">
+    <div class="menu-left">
+      <span class="menu-item active">Documento</span>
+      <span class="menu-item">Crear</span>
+      <span class="menu-item">Convertir a Factura Negociable</span>
+    </div>
+
+    <div class="menu-right">
+      <span class="download-label">Descargar:</span>
+
+      <button class="btn small pdf" (click)="downloadPDF()">PDF</button>
+      <button class="btn small xml" (click)="downloadXML()">XML</button>
+      <button class="btn small cdr" (click)="downloadCDR()">CDR</button>
+    </div>
+  </div>
+
+  <!-- 🔵 INPUT -->
+  <div class="ticket-input">
+    <input type="text" [(ngModel)]="ticket" placeholder="Ingrese ticket">
+    <button class="btn" (click)="loadFiles()">Cargar documentos</button>
+    <button class="btn secondary" (click)="clearFiles()">Limpiar</button>
+  </div>
+
+  <!-- 🔵 VISOR PDF -->
+  <div class="viewer-content" *ngIf="pdfUrl">
+    <iframe [src]="pdfUrl | safe" class="pdf-frame"></iframe>
+  </div>
+
+</div>

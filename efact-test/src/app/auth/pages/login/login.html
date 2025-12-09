@@ -1,0 +1,48 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Iniciar Sesión</h1>
+    <p class="subtitle">EFACT - Sistema de Gestión de Documentos</p>
+
+    <div *ngIf="error" class="alert alert-error">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="ruc">RUC</label>
+        <input
+          id="ruc"
+          type="text"
+          formControlName="ruc"
+          placeholder="###########"
+          class="form-control"
+          [class.is-invalid]="rucControl?.invalid && rucControl?.touched"
+        />
+        <div *ngIf="rucControl?.invalid && rucControl?.touched" class="error-message">
+          <span *ngIf="rucControl?.errors?.['required']">El RUC es requerido</span>
+          <span *ngIf="rucControl?.errors?.['pattern']">El RUC debe contener 11 dígitos</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Ingresa tu contraseña"
+          class="form-control"
+          [class.is-invalid]="passwordControl?.invalid && passwordControl?.touched"
+        />
+        <div *ngIf="passwordControl?.invalid && passwordControl?.touched" class="error-message">
+          <span *ngIf="passwordControl?.errors?.['required']">La contraseña es requerida</span>
+          <span *ngIf="passwordControl?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">
+        {{ isLoading ? 'Cargando...' : 'Iniciar Sesión' }}
+      </button>
+    </form>
+  </div>
+</div>
